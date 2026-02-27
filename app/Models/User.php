@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_seen',
     ];
 
     /**
@@ -43,6 +46,32 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'last_seen' => 'datetime',
         ];
     }
+
+
+    public function isOnline()
+    {
+        if (!$this->last_seen)
+            return false;
+
+        return $this->last_seen->diffInSeconds(now()) < 120;
+    }
+
+    public function activeTime()
+    {
+        if (!$this->last_seen)
+            return 'Never';
+
+        return Carbon::parse($this->last_seen)
+            ->diffForHumans();
+    }
+
+    public function loginHistories()
+    {
+        return $this->hasMany(LoginHistory::class);
+    }
+
+
 }

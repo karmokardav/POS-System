@@ -42,9 +42,7 @@
                 x-data="{ open: {{ request()->routeIs('roles.index') || request()->routeIs('permissions.index') || request()->routeIs('users.index') ? 'true' : 'false' }} }">
 
                 <!-- Parent Button -->
-                <button 
-                    @click="open = !open"
-                    :class="open 
+                <button @click="open = !open" :class="open 
                         ? 'bg-[#f9e6dc] text-[#c3592b]' 
                         : 'text-gray-700 hover:bg-[#c3592b] hover:text-white'"
                     class="w-full flex items-center justify-center md:justify-between md:gap-3 px-0 md:px-3 py-2 rounded-lg transition">
@@ -55,7 +53,7 @@
                     </div>
 
                     <i class="fa fa-chevron-down hidden md:block text-xs transition-transform"
-                    :class="open ? 'rotate-180' : ''"></i>
+                        :class="open ? 'rotate-180' : ''"></i>
                 </button>
 
                 <!-- Dropdown Items -->
@@ -63,16 +61,16 @@
 
                     <a href="{{ route('users.index') }}" class="flex items-center justify-center md:justify-start md:gap-3 px-0 md:px-6 py-2 rounded-lg transition
                                 {{ request()->routeIs('users.index')
-                        ? 'bg-brand-50 text-[#c3592b]'
-                        : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
+    ? 'bg-brand-50 text-[#c3592b]'
+    : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
 
                         <i class="fa fa-users text-sm"></i>
                         <span class="hidden md:block font-semibold">Users</span>
                     </a>
                     <a href="{{ route('roles.index') }}" class="flex items-center justify-center md:justify-start md:gap-3 px-0 md:px-6 py-2 rounded-lg transition
                                 {{ request()->routeIs('roles.index')
-                        ? 'bg-brand-50 text-[#c3592b]'
-                        : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
+    ? 'bg-brand-50 text-[#c3592b]'
+    : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
 
                         <i class="fa fa-user-shield text-sm"></i>
                         <span class="hidden md:block font-semibold">Roles</span>
@@ -80,15 +78,26 @@
 
                     <a href="{{ route('permissions.index') }}" class="flex items-center justify-center md:justify-start md:gap-3 px-0 md:px-6 py-2 rounded-lg transition
                                 {{ request()->routeIs('permissions.index')
-                        ? 'bg-brand-50 text-[#c3592b]'
-                        : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
+    ? 'bg-brand-50 text-[#c3592b]'
+    : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
 
                         <i class="fa fa-lock text-sm"></i>
                         <span class="hidden md:block font-semibold">Permissions</span>
                     </a>
-
                 </div>
             </div>
+            <a href="{{ route('loginHistory.index') }}" class="flex items-center justify-center md:justify-start md:gap-3 px-0 md:px-3 hover:bg-brand-500 hover:text-white py-2 rounded-lg transition
+                    {{ request()->routeIs('')
+    ? 'bg-brand-50 text-[#c3592b]'
+    : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
+
+                <i class="fa fa-history text-lg"></i>
+
+                <span class="hidden md:block font-semibold">
+                    Login History
+                </span>
+            </a>
+            
         </nav>
         @endrole
 
