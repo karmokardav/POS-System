@@ -37,6 +37,16 @@
                     Dashboard
                 </span>
             </a>
+            <!-- products -->
+            <a href="{{ route('products.index') }}" class="flex items-center justify-center md:justify-start md:gap-3 px-0 md:px-3 hover:bg-brand-500 hover:text-white py-2 rounded-lg transition
+                    {{ request()->routeIs('products.index')
+    ? 'bg-brand-50 text-[#c3592b]'
+    : 'text-gray-700 hover:bg-[#c3592b] hover:text-white' }}">
+                <i class="fa fa-box text-lg"></i>
+                <span class="hidden md:block font-semibold">
+                    Products
+                </span>
+            </a>
             <!-- Management Menu -->
             <div
                 x-data="{ open: {{ request()->routeIs('roles.index') || request()->routeIs('permissions.index') || request()->routeIs('users.index') ? 'true' : 'false' }} }">

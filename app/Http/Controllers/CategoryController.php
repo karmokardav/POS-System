@@ -15,7 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with('parent')
-            ->whereNull('parent_id')
             ->latest()
             ->paginate(10);
 
@@ -28,7 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         $category = new Category();
-        $parents = Category::whereNull('category_id')->get();
+        $parents = Category::whereNull('parent_id')->get();
 
         return view('categories.form', compact('category', 'parents'));
     }
